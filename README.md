@@ -22,12 +22,11 @@ HTML5 · CSS3 · JavaScript (vanilla, sem frameworks nem build step)
 
 ## Estrutura
 
-\`\`\`
-index.html      # markup e conteúdo (PT/EN)
-css/style.css   # estilos e animações
-js/main.js      # troca de idioma, digitação, reveal ao rolar
-assets/         # foto de perfil e currículo em PDF
-\`\`\`
+
+- index.html      # markup e conteúdo (PT/EN)
+- css/style.css   # estilos e animações
+- js/main.js      # troca de idioma, digitação, reveal ao rolar
+- assets/         # foto de perfil e currículo em PDF
 
 
 ## Contato
