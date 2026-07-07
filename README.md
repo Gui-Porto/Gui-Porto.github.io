@@ -29,13 +29,6 @@ js/main.js      # troca de idioma, digitação, reveal ao rolar
 assets/         # foto de perfil e currículo em PDF
 \`\`\`
 
-## Rodando localmente
-
-Não há dependências nem build — basta abrir o `index.html` no navegador, ou servir a pasta:
-
-\`\`\`bash
-npx serve .
-\`\`\`
 
 ## Contato
 
