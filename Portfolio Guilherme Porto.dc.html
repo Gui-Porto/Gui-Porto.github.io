@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --accent: #2563EB; --ink: oklch(0.24 0.03 255); --muted: oklch(0.5 0.03 255); --bg: oklch(0.98 0.005 240); }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'IBM Plex Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: oklch(0.45 0.19 258); }
+  .txt-en { display: none; }
+  .lang-en .txt-pt { display: none !important; }
+  .lang-en .txt-en { display: revert; }
+  @keyframes blobA { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(60px,-40px) scale(1.15); } }
+  @keyframes blobB { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-50px,50px) scale(0.9); } }
+  @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+  @keyframes blink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+  @keyframes spinSlow { to { transform: rotate(360deg); } }
+</style>
+</helmet>
+
+<div class="{{ rootClass }}" style="position:relative; overflow-x:hidden; min-height:100vh">
+
+  <!-- fundo animado -->
+  <div style="position:fixed; inset:0; pointer-events:none; z-index:0; display:{{ blobDisplay }}">
+    <div style="position:absolute; top:-120px; right:-100px; width:520px; height:520px; border-radius:50%; background:radial-gradient(circle, oklch(0.85 0.08 255 / 0.55), transparent 70%); animation:blobA 14s ease-in-out infinite"></div>
+    <div style="position:absolute; bottom:-160px; left:-140px; width:600px; height:600px; border-radius:50%; background:radial-gradient(circle, oklch(0.88 0.06 230 / 0.5), transparent 70%); animation:blobB 18s ease-in-out infinite"></div>
+    <div style="position:absolute; top:35%; left:55%; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle, oklch(0.9 0.05 270 / 0.4), transparent 70%); animation:blobA 22s ease-in-out infinite"></div>
+  </div>
+
+  <!-- navegação -->
+  <nav style="position:fixed; top:0; left:0; right:0; z-index:50; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 6vw; background:oklch(0.98 0.005 240 / 0.8); backdrop-filter:blur(12px); border-bottom:1px solid oklch(0.9 0.01 250)">
+    <a href="#topo" style="font-family:'Sora',sans-serif; font-weight:800; font-size:18px; color:var(--ink)">gui<span style="color:var(--accent)">.porto</span></a>
+    <div style="display:flex; align-items:center; gap:26px; font-size:15px; font-weight:500">
+      <a href="#sobre" style="color:var(--muted)" style-hover="color:var(--accent)"><span class="txt-pt">Sobre</span><span class="txt-en">About</span></a>
+      <a href="#experiencia" style="color:var(--muted)" style-hover="color:var(--accent)"><span class="txt-pt">Experiência</span><span class="txt-en">Experience</span></a>
+      <a href="#projetos" style="color:var(--muted)" style-hover="color:var(--accent)"><span class="txt-pt">Projetos</span><span class="txt-en">Projects</span></a>
+      <a href="#habilidades" style="color:var(--muted)" style-hover="color:var(--accent)"><span class="txt-pt">Habilidades</span><span class="txt-en">Skills</span></a>
+      <a href="#formacao" style="color:var(--muted)" style-hover="color:var(--accent)"><span class="txt-pt">Formação</span><span class="txt-en">Education</span></a>
+      <a href="#contato" style="color:var(--muted)" style-hover="color:var(--accent)"><span class="txt-pt">Contato</span><span class="txt-en">Contact</span></a>
+      <button onClick="{{ toggleLang }}" style="font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:500; padding:7px 14px; border-radius:999px; border:1.5px solid var(--accent); background:transparent; color:var(--accent); cursor:pointer; transition:all .2s" style-hover="background:var(--accent); color:white">
+        <span class="txt-pt">EN 🇺🇸</span><span class="txt-en">PT 🇧🇷</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- hero -->
+  <header id="topo" data-screen-label="Hero" style="position:relative; z-index:1; display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:64px; min-height:100vh; padding:120px 6vw 60px; box-sizing:border-box">
+    <div style="max-width:560px; flex:1 1 400px">
+      <div data-reveal style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.18em; color:var(--accent); margin-bottom:18px"><span class="txt-pt">// PORTFÓLIO</span><span class="txt-en">// PORTFOLIO</span></div>
+      <h1 data-reveal style="font-family:'Sora',sans-serif; font-size:clamp(40px,6vw,68px); font-weight:800; line-height:1.05; margin:0 0 20px">Guilherme<br><span style="color:var(--accent)">Porto</span> Ribeiro</h1>
+      <div data-reveal style="font-family:'IBM Plex Mono',monospace; font-size:clamp(16px,2.2vw,22px); color:var(--muted); min-height:34px; margin-bottom:28px">{{ typed }}<span style="display:inline-block; width:11px; height:24px; background:var(--accent); vertical-align:middle; margin-left:4px; animation:blink 1s step-end infinite"></span></div>
+      <div data-reveal style="display:flex; gap:16px; flex-wrap:wrap">
+        <a href="#experiencia" style="display:inline-flex; align-items:center; padding:14px 28px; border-radius:12px; background:var(--accent); color:white; font-weight:600; font-size:16px; box-shadow:0 8px 24px oklch(0.55 0.18 255 / 0.35); transition:transform .2s, box-shadow .2s" style-hover="transform:translateY(-3px); box-shadow:0 14px 32px oklch(0.55 0.18 255 / 0.45); color:white"><span class="txt-pt">Ver experiência ↓</span><span class="txt-en">See experience ↓</span></a>
+        <a href="Curriculo Guilherme Porto.dc.html" style="display:inline-flex; align-items:center; padding:14px 28px; border-radius:12px; border:1.5px solid oklch(0.85 0.02 250); background:white; color:var(--ink); font-weight:600; font-size:16px; transition:transform .2s, border-color .2s" style-hover="transform:translateY(-3px); border-color:var(--accent); color:var(--accent)"><span class="txt-pt">📄 Currículo</span><span class="txt-en">📄 Resume</span></a>
+      </div>
+    </div>
+    <div data-reveal style="position:relative; width:300px; height:300px; flex:0 0 auto; animation:floaty 6s ease-in-out infinite">
+      <div style="position:absolute; inset:-14px; border-radius:50%; border:2px dashed var(--accent); opacity:0.5; animation:spinSlow 30s linear infinite"></div>
+      <img src="assets/foto-perfil.jpg" alt="Guilherme Porto" style="width:300px; height:300px; border-radius:50%; object-fit:cover; border:6px solid white; box-shadow:0 24px 60px oklch(0.55 0.18 255 / 0.25)">
+      <div style="position:absolute; bottom:8px; right:-8px; background:white; border:1px solid oklch(0.9 0.01 250); border-radius:999px; padding:8px 16px; font-family:'IBM Plex Mono',monospace; font-size:13px; box-shadow:0 8px 20px oklch(0.3 0.02 255 / 0.12)">📍 Atibaia · SP</div>
+    </div>
+  </header>
+
+  <!-- sobre -->
+  <section id="sobre" data-screen-label="Sobre" style="position:relative; z-index:1; max-width:860px; margin:0 auto; padding:90px 6vw">
+    <div data-reveal style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.18em; color:var(--accent); margin-bottom:12px">01</div>
+    <h2 data-reveal style="font-family:'Sora',sans-serif; font-size:36px; font-weight:700; margin:0 0 22px"><span class="txt-pt">Sobre mim</span><span class="txt-en">About me</span></h2>
+    <div data-reveal>
+      <p class="txt-pt" style="font-size:18px; line-height:1.7; color:var(--muted); margin:0; text-wrap:pretty">Tenho 20 anos e sou apaixonado por tecnologia. Atuo como supervisor administrativo, liderando uma equipe de 10 pessoas, e estudo Análise e Desenvolvimento de Sistemas. Crio sites e aplicativos com HTML, CSS, JavaScript, Node.js e React Native, e tenho experiência prática com suporte técnico, redes e atendimento ao cliente. Sou motivado em buscar meus objetivos e responsável com meus compromissos — estou aqui para somar!</p>
+      <p class="txt-en" style="font-size:18px; line-height:1.7; color:var(--muted); margin:0; text-wrap:pretty">I'm 20 years old and passionate about technology. I work as an administrative supervisor leading a 10-person team, and I study Systems Analysis and Development. I build websites and apps with HTML, CSS, JavaScript, Node.js and React Native, with hands-on experience in technical support, networking and customer service. I'm driven to reach my goals and committed to my responsibilities — I'm here to add value!</p>
+    </div>
+  </section>
+
+  <!-- experiência -->
+  <section id="experiencia" data-screen-label="Experiência" style="position:relative; z-index:1; max-width:860px; margin:0 auto; padding:40px 6vw 90px">
+    <div data-reveal style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.18em; color:var(--accent); margin-bottom:12px">02</div>
+    <h2 data-reveal style="font-family:'Sora',sans-serif; font-size:36px; font-weight:700; margin:0 0 40px"><span class="txt-pt">Experiência profissional</span><span class="txt-en">Work experience</span></h2>
+
+    <div style="position:relative; padding-left:32px; border-left:2px solid oklch(0.88 0.02 250); display:flex; flex-direction:column; gap:28px">
+
+      <div data-reveal style="position:relative; background:white; border:1px solid oklch(0.92 0.01 250); border-radius:16px; padding:26px 28px; transition:transform .25s, box-shadow .25s" style-hover="transform:translateX(6px); box-shadow:0 16px 40px oklch(0.55 0.18 255 / 0.15)">
+        <div style="position:absolute; left:-41px; top:30px; width:16px; height:16px; border-radius:50%; background:var(--accent); border:4px solid var(--bg)"></div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px"><span style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent)">out 2025 — <span class="txt-pt">atual</span><span class="txt-en">present</span></span><span style="font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:500; padding:3px 10px; border-radius:999px; background:var(--accent); color:white"><span class="txt-pt">ATUAL</span><span class="txt-en">CURRENT</span></span></div>
+        <h3 style="font-family:'Sora',sans-serif; font-size:20px; font-weight:700; margin:0 0 2px"><span class="txt-pt">Supervisor Administrativo</span><span class="txt-en">Administrative Supervisor</span></h3>
+        <div style="font-size:15px; font-weight:600; color:var(--muted); margin-bottom:12px">A.C Mendonça · Guarulhos, SP</div>
+        <ul class="txt-pt" style="margin:0; padding-left:18px; font-size:15px; line-height:1.7; color:var(--muted)">
+          <li>Liderança de equipe de 10 pessoas: gestão de pessoas, distribuição de tarefas, desenvolvimento e desempenho do time.</li>
+          <li>Auditorias financeiras e controle de informações, garantindo precisão, conformidade e melhoria de processos.</li>
+          <li>Coordenação de operações de monitoramento (CFTV), assegurando continuidade e qualidade do serviço.</li>
+          <li>Rotinas administrativas, relatórios operacionais e indicadores (KPIs) com Excel — planilhas, dashboards e controles.</li>
+        </ul>
+        <ul class="txt-en" style="margin:0; padding-left:18px; font-size:15px; line-height:1.7; color:var(--muted)">
+          <li>Leading a 10-person team: people management, task distribution, development and performance.</li>
+          <li>Financial audits and information control, ensuring accuracy, compliance and process improvement.</li>
+          <li>Coordination of monitoring operations (CCTV), ensuring service continuity and quality.</li>
+          <li>Administrative routines, operational reports and KPIs with Excel — spreadsheets, dashboards and controls.</li>
+        </ul>
+      </div>
+
+      <div data-reveal style="position:relative; background:white; border:1px solid oklch(0.92 0.01 250); border-radius:16px; padding:26px 28px; transition:transform .25s, box-shadow .25s" style-hover="transform:translateX(6px); box-shadow:0 16px 40px oklch(0.55 0.18 255 / 0.15)">
+        <div style="position:absolute; left:-41px; top:30px; width:16px; height:16px; border-radius:50%; background:oklch(0.75 0.08 255); border:4px solid var(--bg)"></div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent); margin-bottom:6px">2024 — 2025</div>
+        <h3 style="font-family:'Sora',sans-serif; font-size:20px; font-weight:700; margin:0 0 2px"><span class="txt-pt">Help Desk · Atendimento</span><span class="txt-en">Help Desk · Customer Support</span></h3>
+        <div style="font-size:15px; font-weight:600; color:var(--muted); margin-bottom:12px">Atibaia Fibra Telecom</div>
+        <ul class="txt-pt" style="margin:0; padding-left:18px; font-size:15px; line-height:1.7; color:var(--muted)">
+          <li>Suporte técnico e gerenciamento de redes dos clientes.</li>
+          <li>Atendimento ao cliente e telemarketing.</li>
+          <li>Operação do sistema de gestão HubSoft.</li>
+        </ul>
+        <ul class="txt-en" style="margin:0; padding-left:18px; font-size:15px; line-height:1.7; color:var(--muted)">
+          <li>Technical support and customer network management.</li>
+          <li>Customer service and telemarketing.</li>
+          <li>Operation of the HubSoft management system.</li>
+        </ul>
+      </div>
+
+      <div data-reveal style="position:relative; background:white; border:1px solid oklch(0.92 0.01 250); border-radius:16px; padding:26px 28px; transition:transform .25s, box-shadow .25s" style-hover="transform:translateX(6px); box-shadow:0 16px 40px oklch(0.55 0.18 255 / 0.15)">
+        <div style="position:absolute; left:-41px; top:30px; width:16px; height:16px; border-radius:50%; background:oklch(0.75 0.08 255); border:4px solid var(--bg)"></div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent); margin-bottom:6px">2023</div>
+        <h3 style="font-family:'Sora',sans-serif; font-size:20px; font-weight:700; margin:0 0 2px"><span class="txt-pt">Técnico de Informática</span><span class="txt-en">IT Technician</span></h3>
+        <div style="font-size:15px; font-weight:600; color:var(--muted); margin-bottom:12px">Conecte Tudo Informática</div>
+        <ul class="txt-pt" style="margin:0; padding-left:18px; font-size:15px; line-height:1.7; color:var(--muted)">
+          <li>Manutenção de computadores em geral.</li>
+          <li>Instalação de programas, backup e formatação.</li>
+        </ul>
+        <ul class="txt-en" style="margin:0; padding-left:18px; font-size:15px; line-height:1.7; color:var(--muted)">
+          <li>General computer maintenance.</li>
+          <li>Software installation, backup and formatting.</li>
+        </ul>
+      </div>
+
+      <div data-reveal style="position:relative; background:white; border:1px solid oklch(0.92 0.01 250); border-radius:16px; padding:26px 28px; transition:transform .25s, box-shadow .25s" style-hover="transform:translateX(6px); box-shadow:0 16px 40px oklch(0.55 0.18 255 / 0.15)">
+        <div style="position:absolute; left:-41px; top:30px; width:16px; height:16px; border-radius:50%; background:oklch(0.75 0.08 255); border:4px solid var(--bg)"></div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent); margin-bottom:6px">2021 — 2022</div>
+        <h3 style="font-family:'Sora',sans-serif; font-size:20px; font-weight:700; margin:0 0 2px"><span class="txt-pt">Assistente Administrativo</span><span class="txt-en">Administrative Assistant</span></h3>
+        <div style="font-size:15px; font-weight:600; color:var(--muted); margin-bottom:12px">Prev Fácil</div>
+        <ul class="txt-pt" style="margin:0; padding-left:18px; font-size:15px; line-height:1.7; color:var(--muted)">
+          <li>Consulta de histórico de processos (home office).</li>
+          <li>Produção de relatórios diários.</li>
+        </ul>
+        <ul class="txt-en" style="margin:0; padding-left:18px; font-size:15px; line-height:1.7; color:var(--muted)">
+          <li>Case history research (remote work).</li>
+          <li>Daily report production.</li>
+        </ul>
+      </div>
+
+      <div data-reveal style="position:relative; background:white; border:1px solid oklch(0.92 0.01 250); border-radius:16px; padding:26px 28px; transition:transform .25s, box-shadow .25s" style-hover="transform:translateX(6px); box-shadow:0 16px 40px oklch(0.55 0.18 255 / 0.15)">
+        <div style="position:absolute; left:-41px; top:30px; width:16px; height:16px; border-radius:50%; background:oklch(0.75 0.08 255); border:4px solid var(--bg)"></div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent); margin-bottom:6px">2020 — 2021</div>
+        <h3 style="font-family:'Sora',sans-serif; font-size:20px; font-weight:700; margin:0 0 2px"><span class="txt-pt">Social Media · Conteúdo Digital</span><span class="txt-en">Social Media · Digital Content</span></h3>
+        <div style="font-size:15px; font-weight:600; color:var(--muted); margin-bottom:12px">LH Content — Consultoria e Marketing Digital</div>
+        <ul class="txt-pt" style="margin:0; padding-left:18px; font-size:15px; line-height:1.7; color:var(--muted)">
+          <li>Administração de contas em redes sociais.</li>
+          <li>Produção de publicações, propagandas e conteúdo digital para empresas.</li>
+        </ul>
+        <ul class="txt-en" style="margin:0; padding-left:18px; font-size:15px; line-height:1.7; color:var(--muted)">
+          <li>Social media account management.</li>
+          <li>Production of posts, ads and digital content for companies.</li>
+        </ul>
+      </div>
+
+      <div data-reveal style="position:relative; background:white; border:1px solid oklch(0.92 0.01 250); border-radius:16px; padding:26px 28px; transition:transform .25s, box-shadow .25s" style-hover="transform:translateX(6px); box-shadow:0 16px 40px oklch(0.55 0.18 255 / 0.15)">
+        <div style="position:absolute; left:-41px; top:30px; width:16px; height:16px; border-radius:50%; background:oklch(0.75 0.08 255); border:4px solid var(--bg)"></div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent); margin-bottom:6px">2019 — 2020</div>
+        <h3 style="font-family:'Sora',sans-serif; font-size:20px; font-weight:700; margin:0 0 2px"><span class="txt-pt">Auxiliar de Produção</span><span class="txt-en">Production Assistant</span></h3>
+        <div style="font-size:15px; font-weight:600; color:var(--muted); margin-bottom:12px">Ziom Motores</div>
+        <ul class="txt-pt" style="margin:0; padding-left:18px; font-size:15px; line-height:1.7; color:var(--muted)">
+          <li>Manutenção e montagem de micromotores.</li>
+          <li>Preparo do produto para expedição.</li>
+        </ul>
+        <ul class="txt-en" style="margin:0; padding-left:18px; font-size:15px; line-height:1.7; color:var(--muted)">
+          <li>Micromotor maintenance and assembly.</li>
+          <li>Product preparation for shipping.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- projetos -->
+  <section id="projetos" data-screen-label="Projetos" style="position:relative; z-index:1; max-width:860px; margin:0 auto; padding:40px 6vw 90px">
+    <div data-reveal style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.18em; color:var(--accent); margin-bottom:12px">03</div>
+    <h2 data-reveal style="font-family:'Sora',sans-serif; font-size:36px; font-weight:700; margin:0 0 34px"><span class="txt-pt">Projetos</span><span class="txt-en">Projects</span></h2>
+    <div data-reveal style="position:relative; overflow:hidden; background:oklch(0.28 0.06 258); color:white; border-radius:20px; padding:40px 44px; transition:transform .25s, box-shadow .25s" style-hover="transform:translateY(-6px); box-shadow:0 20px 50px oklch(0.55 0.18 255 / 0.3)">
+      <div style="position:absolute; top:-80px; right:-60px; width:280px; height:280px; border-radius:50%; background:radial-gradient(circle, oklch(0.55 0.18 255 / 0.4), transparent 70%)"></div>
+      <div style="position:relative; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:24px">
+        <div style="max-width:520px">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.14em; color:oklch(0.8 0.06 255); margin-bottom:10px">SAAS · <span class="txt-pt">JURÍDICO</span><span class="txt-en">LEGAL TECH</span></div>
+          <div style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; margin-bottom:12px">Lexo</div>
+          <p class="txt-pt" style="font-size:16px; line-height:1.7; color:oklch(0.85 0.02 255); margin:0; text-wrap:pretty">Sistema SaaS jurídico desenvolvido por mim, para gestão de processos e rotinas de escritórios de advocacia.</p>
+          <p class="txt-en" style="font-size:16px; line-height:1.7; color:oklch(0.85 0.02 255); margin:0; text-wrap:pretty">A legal SaaS system I built for managing cases and law-firm routines.</p>
+        </div>
+        <div style="font-family:'Sora',sans-serif; font-size:64px; font-weight:800; color:oklch(0.55 0.18 255 / 0.9); flex:0 0 auto">⚖️</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- habilidades -->
+  <section id="habilidades" data-screen-label="Habilidades" style="position:relative; z-index:1; max-width:860px; margin:0 auto; padding:40px 6vw 90px">
+    <div data-reveal style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.18em; color:var(--accent); margin-bottom:12px">04</div>
+    <h2 data-reveal style="font-family:'Sora',sans-serif; font-size:36px; font-weight:700; margin:0 0 34px"><span class="txt-pt">Habilidades</span><span class="txt-en">Skills</span></h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:24px">
+      <div data-reveal style="background:white; border:1px solid oklch(0.92 0.01 250); border-radius:16px; padding:28px">
+        <div style="font-family:'Sora',sans-serif; font-weight:700; font-size:18px; margin-bottom:18px">💻 <span class="txt-pt">Desenvolvimento</span><span class="txt-en">Development</span></div>
+        <div style="display:flex; flex-wrap:wrap; gap:10px">
+          <span style="padding:8px 16px; border-radius:999px; background:oklch(0.94 0.03 255); color:var(--accent); font-weight:600; font-size:14px; transition:transform .2s" style-hover="transform:scale(1.08)">HTML5</span>
+          <span style="padding:8px 16px; border-radius:999px; background:oklch(0.94 0.03 255); color:var(--accent); font-weight:600; font-size:14px; transition:transform .2s" style-hover="transform:scale(1.08)">CSS3</span>
+          <span style="padding:8px 16px; border-radius:999px; background:oklch(0.94 0.03 255); color:var(--accent); font-weight:600; font-size:14px; transition:transform .2s" style-hover="transform:scale(1.08)">JavaScript</span>
+          <span style="padding:8px 16px; border-radius:999px; background:oklch(0.94 0.03 255); color:var(--accent); font-weight:600; font-size:14px; transition:transform .2s" style-hover="transform:scale(1.08)">Node.js</span>
+          <span style="padding:8px 16px; border-radius:999px; background:oklch(0.94 0.03 255); color:var(--accent); font-weight:600; font-size:14px; transition:transform .2s" style-hover="transform:scale(1.08)">React Native</span>
+        </div>
+      </div>
+      <div data-reveal style="background:white; border:1px solid oklch(0.92 0.01 250); border-radius:16px; padding:28px">
+        <div style="font-family:'Sora',sans-serif; font-weight:700; font-size:18px; margin-bottom:18px">🛠️ <span class="txt-pt">Suporte &amp; Redes</span><span class="txt-en">Support &amp; Networking</span></div>
+        <div style="display:flex; flex-wrap:wrap; gap:10px">
+          <span style="padding:8px 16px; border-radius:999px; background:oklch(0.94 0.03 255); color:var(--accent); font-weight:600; font-size:14px; transition:transform .2s" style-hover="transform:scale(1.08)">Help Desk</span>
+          <span style="padding:8px 16px; border-radius:999px; background:oklch(0.94 0.03 255); color:var(--accent); font-weight:600; font-size:14px; transition:transform .2s" style-hover="transform:scale(1.08)"><span class="txt-pt">Redes</span><span class="txt-en">Networking</span></span>
+          <span style="padding:8px 16px; border-radius:999px; background:oklch(0.94 0.03 255); color:var(--accent); font-weight:600; font-size:14px; transition:transform .2s" style-hover="transform:scale(1.08)">HubSoft</span>
+          <span style="padding:8px 16px; border-radius:999px; background:oklch(0.94 0.03 255); color:var(--accent); font-weight:600; font-size:14px; transition:transform .2s" style-hover="transform:scale(1.08)"><span class="txt-pt">Manutenção de PCs</span><span class="txt-en">PC Maintenance</span></span>
+          <span style="padding:8px 16px; border-radius:999px; background:oklch(0.94 0.03 255); color:var(--accent); font-weight:600; font-size:14px; transition:transform .2s" style-hover="transform:scale(1.08)"><span class="txt-pt">Atendimento ao Cliente</span><span class="txt-en">Customer Service</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- formação -->
+  <section id="formacao" data-screen-label="Formação" style="position:relative; z-index:1; max-width:860px; margin:0 auto; padding:40px 6vw 90px">
+    <div data-reveal style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.18em; color:var(--accent); margin-bottom:12px">05</div>
+    <h2 data-reveal style="font-family:'Sora',sans-serif; font-size:36px; font-weight:700; margin:0 0 34px"><span class="txt-pt">Formação</span><span class="txt-en">Education</span></h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:24px">
+      <div data-reveal style="background:white; border:1px solid oklch(0.92 0.01 250); border-radius:16px; padding:28px; border-top:4px solid var(--accent); transition:transform .25s, box-shadow .25s" style-hover="transform:translateY(-6px); box-shadow:0 16px 40px oklch(0.55 0.18 255 / 0.15)">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent); margin-bottom:8px"><span class="txt-pt">CURSANDO</span><span class="txt-en">IN PROGRESS</span></div>
+        <div style="font-family:'Sora',sans-serif; font-weight:700; font-size:18px; margin-bottom:6px"><span class="txt-pt">Análise e Desenvolvimento de Sistemas</span><span class="txt-en">Systems Analysis and Development</span></div>
+        <div style="font-size:15px; color:var(--muted)">Universidade São Francisco (USF)</div>
+      </div>
+      <div data-reveal style="background:white; border:1px solid oklch(0.92 0.01 250); border-radius:16px; padding:28px; border-top:4px solid oklch(0.75 0.08 255); transition:transform .25s, box-shadow .25s" style-hover="transform:translateY(-6px); box-shadow:0 16px 40px oklch(0.55 0.18 255 / 0.15)">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent); margin-bottom:8px"><span class="txt-pt">COMPLEMENTAR</span><span class="txt-en">COMPLEMENTARY</span></div>
+        <div style="font-family:'Sora',sans-serif; font-weight:700; font-size:18px; margin-bottom:6px"><span class="txt-pt">Fundamentos: sistemas, web e mobile híbrido</span><span class="txt-en">Fundamentals: systems, web and hybrid mobile</span></div>
+        <div style="font-size:15px; color:var(--muted)">Faculdade Impacta</div>
+      </div>
+      <div data-reveal style="background:white; border:1px solid oklch(0.92 0.01 250); border-radius:16px; padding:28px; border-top:4px solid oklch(0.75 0.08 255); transition:transform .25s, box-shadow .25s" style-hover="transform:translateY(-6px); box-shadow:0 16px 40px oklch(0.55 0.18 255 / 0.15)">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent); margin-bottom:8px"><span class="txt-pt">IDIOMAS</span><span class="txt-en">LANGUAGES</span></div>
+        <div style="font-family:'Sora',sans-serif; font-weight:700; font-size:18px; margin-bottom:6px"><span class="txt-pt">Inglês intermediário — 4 anos</span><span class="txt-en">Intermediate English — 4 years</span></div>
+        <div style="font-size:15px; color:var(--muted)">Yázigi Idiomas</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- contato -->
+  <section id="contato" data-screen-label="Contato" style="position:relative; z-index:1; max-width:860px; margin:0 auto; padding:40px 6vw 100px; text-align:center">
+    <div data-reveal style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.18em; color:var(--accent); margin-bottom:12px">06</div>
+    <h2 data-reveal style="font-family:'Sora',sans-serif; font-size:clamp(32px,5vw,48px); font-weight:800; margin:0 0 16px"><span class="txt-pt">Vamos conversar?</span><span class="txt-en">Let's talk?</span></h2>
+    <p data-reveal style="font-size:17px; color:var(--muted); margin:0 0 34px"><span class="txt-pt">Estou aberto a novas oportunidades. Entre em contato!</span><span class="txt-en">I'm open to new opportunities. Get in touch!</span></p>
+    <div data-reveal style="display:flex; flex-wrap:wrap; justify-content:center; gap:16px; margin-bottom:40px">
+      <a href="mailto:guiribeiro0910@gmail.com" style="display:inline-flex; align-items:center; gap:8px; padding:14px 26px; border-radius:12px; background:var(--accent); color:white; font-weight:600; font-size:16px; box-shadow:0 8px 24px oklch(0.55 0.18 255 / 0.35); transition:transform .2s" style-hover="transform:translateY(-3px); color:white">✉️ guiribeiro0910@gmail.com</a>
+      <a href="tel:+5511934693145" style="display:inline-flex; align-items:center; gap:8px; padding:14px 26px; border-radius:12px; border:1.5px solid oklch(0.85 0.02 250); background:white; color:var(--ink); font-weight:600; font-size:16px; transition:transform .2s, border-color .2s" style-hover="transform:translateY(-3px); border-color:var(--accent); color:var(--accent)">📞 (11) 93469-3145</a>
+    </div>
+    <div data-reveal style="display:flex; justify-content:center; gap:22px; font-weight:600; font-size:15px">
+      <a href="https://www.linkedin.com/in/guilherme-porto-ribeiro-901b2a256/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/Gui-Porto" target="_blank">GitHub</a>
+      <a href="https://www.instagram.com/gui.rrp/" target="_blank">Instagram</a>
+    </div>
+  </section>
+
+  <footer style="position:relative; z-index:1; text-align:center; padding:24px; font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--muted); border-top:1px solid oklch(0.92 0.01 250)">
+    <span class="txt-pt">Feito com 💙 por Guilherme Porto · 2026</span><span class="txt-en">Made with 💙 by Guilherme Porto · 2026</span>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;accent&quot;: { &quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#2563EB&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;options&quot;: [&quot;#2563EB&quot;, &quot;#0EA5E9&quot;, &quot;#1D4ED8&quot;, &quot;#0891B2&quot;], &quot;section&quot;: &quot;Visual&quot; },
+  &quot;animatedBackground&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Visual&quot; }
+}">
+class Component extends DCLogic {
+  state = { lang: 'pt', typed: '' };
+
+  phrases() {
+    return this.state.lang === 'pt'
+      ? ['Supervisor Administrativo', 'Desenvolvedor Web em formação', 'Criador do Lexo — SaaS Jurídico', 'HTML • CSS • JavaScript • Node.js']
+      : ['Administrative Supervisor', 'Web Developer in training', 'Creator of Lexo — Legal SaaS', 'HTML • CSS • JavaScript • Node.js'];
+  }
+
+  componentDidMount() {
+    this._alive = true;
+    this._pi = 0; this._ci = 0; this._deleting = false;
+    this.tick();
+    this.applyAccent();
+    // scroll reveal
+    const els = document.querySelectorAll('[data-reveal]');
+    els.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(26px)';
+      el.style.transition = 'opacity .7s ease, transform .7s ease';
+    });
+    if ('IntersectionObserver' in window) {
+      this._io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.style.opacity = '1';
+            e.target.style.transform = 'none';
+            this._io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      els.forEach(el => this._io.observe(el));
+    } else {
+      els.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
+    }
+  }
+
+  componentDidUpdate() { this.applyAccent(); }
+
+  applyAccent() {
+    const accent = this.props.accent ?? '#2563EB';
+    document.documentElement.style.setProperty('--accent', accent);
+  }
+
+  tick() {
+    if (!this._alive) return;
+    const list = this.phrases();
+    const full = list[this._pi % list.length];
+    if (this._deleting) {
+      this._ci--;
+      if (this._ci <= 0) { this._deleting = false; this._pi++; }
+    } else {
+      this._ci++;
+      if (this._ci >= full.length) { this._deleting = true; }
+    }
+    const txt = full.slice(0, Math.max(0, this._ci));
+    this.setState({ typed: txt });
+    let delay = this._deleting ? 35 : 75;
+    if (!this._deleting && this._ci >= full.length) delay = 1800;
+    this._t = setTimeout(() => this.tick(), delay);
+  }
+
+  componentWillUnmount() {
+    this._alive = false;
+    clearTimeout(this._t);
+    if (this._io) this._io.disconnect();
+  }
+
+  renderVals() {
+    const showBg = this.props.animatedBackground ?? true;
+    return {
+      typed: this.state.typed,
+      rootClass: this.state.lang === 'en' ? 'lang-en' : '',
+      blobDisplay: showBg ? 'block' : 'none',
+      toggleLang: () => {
+        this._pi = 0; this._ci = 0; this._deleting = false;
+        this.setState(s => ({ lang: s.lang === 'pt' ? 'en' : 'pt', typed: '' }));
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
